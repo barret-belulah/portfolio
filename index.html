@@ -43,6 +43,7 @@ nav ul a:hover{border-color:var(--sauge)}
 /* ===== ACCUEIL ===== */
 .hero{--cadrage:center 45%;position:relative;min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);display:flex;align-items:flex-end;color:#fff;background:var(--mousse);overflow:hidden;padding:0}
 /* Cadrage de l'image : changez --cadrage (ex. center top, center bottom, 30% 50%) */
+.hero picture{display:contents}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--cadrage)}
 /* Courbes de niveau en secours si l'image d'accroche est absente */
 .hero::before{content:"";position:absolute;inset:0;opacity:.35;
@@ -103,6 +104,14 @@ footer{background:var(--mousse);color:var(--sauge);text-align:center;padding:1.5
   .chantier:nth-child(even) .photo{order:0}
   .btn.ghost{margin:.6rem 0 0}
 }
+/* Version ordinateur : texte à gauche sur fond vert, photo à droite (bien adapté à une photo verticale) */
+@media(min-width:761px){
+  .hero{align-items:center}
+  .hero-img{left:auto;right:0;width:58%}          /* largeur de la photo : 58 % de l'écran */
+  .hero::after{background:linear-gradient(to right,var(--mousse) 0 40%,rgba(46,70,54,0) 58%)}
+  .hero h1,.hero p{max-width:40%}
+  .hero p{max-width:min(40%,30rem)}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -125,7 +134,13 @@ footer{background:var(--mousse);color:var(--sauge);text-align:center;padding:1.5
 <!-- ===== ACCUEIL =====
      Image d'accroche : img/montagne.jpg -->
 <section class="hero" id="accueil">
-  <img class="hero-img" src="img/montagne.jpg" alt="" onerror="this.remove()">
+  <!-- Photo ordinateur : img/montagne.jpg | Photo téléphone (écran étroit) : img/montagne-mobile.jpg
+       Si la photo téléphone est absente, la photo ordinateur est utilisée à la place -->
+  <picture>
+    <source media="(max-width:760px)" srcset="img/montagne-mobile.jpg">
+    <img class="hero-img" src="img/montagne.jpg" alt=""
+         onerror="if(!this.dataset.r){this.dataset.r=1;this.parentNode.querySelectorAll('source').forEach(function(x){x.remove()});this.src='img/montagne.jpg'}else{this.remove()}">
+  </picture>
   <div class="wrap">
     <h1>Belulah<br>Barret</h1>
     <p>Étudiante en BTS Aménagement paysager à Montpellier. La nature et l'art de concevoir l'espace.</p>
