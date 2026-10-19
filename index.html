@@ -41,8 +41,9 @@ nav ul a{text-decoration:none;font-size:.95rem;padding:.2rem 0;border-bottom:2px
 nav ul a:hover{border-color:var(--sauge)}
 
 /* ===== ACCUEIL ===== */
-.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;color:#fff;background:var(--mousse);overflow:hidden;padding:0}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero{--cadrage:center 45%;position:relative;min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);display:flex;align-items:flex-end;color:#fff;background:var(--mousse);overflow:hidden;padding:0}
+/* Cadrage de l'image : changez --cadrage (ex. center top, center bottom, 30% 50%) */
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--cadrage)}
 /* Courbes de niveau en secours si l'image d'accroche est absente */
 .hero::before{content:"";position:absolute;inset:0;opacity:.35;
   background:repeating-radial-gradient(ellipse at 70% 40%,transparent 0 38px,rgba(157,175,150,.55) 39px 40px)}
@@ -86,9 +87,7 @@ nav ul a:hover{border-color:var(--sauge)}
 .photo img{width:100%;height:auto;max-height:560px;object-fit:contain}  /* image affichée en entier */
 .photo span{display:none;padding:3rem 1rem;text-align:center;color:var(--terre);font-size:.9rem}
 .photo.vide span{display:block}
-.chantier dl{margin-top:.8rem}
-.chantier dt{font-weight:600;color:var(--terre);font-size:.9rem;margin-top:.8rem}
-.chantier dd{margin:0}
+.synthese{margin-top:.8rem}
 
 /* ===== CONTACT ===== */
 .contact{background:var(--sable)}
@@ -144,7 +143,6 @@ footer{background:var(--mousse);color:var(--sauge);text-align:center;padding:1.5
         <!-- Modifiez librement ce texte -->
         <p>Après une licence en architecture à l'École Nationale d'Architecture de Montpellier, je me forme au paysage : je prépare le BTS Aménagement paysager au CFA Agricole de l'Hérault (2025–2027), en alternance chez Sport Environnement à Castelnau-le-Lez.</p>
         <p>En entreprise, je passe du suivi de chantier au terrain, en passant par l'étude de projet et les réponses aux appels d'offres.</p>
-        <p><strong>Objectif professionnel :</strong> [À COMPLÉTER : poste ou type de structure recherchée, date de disponibilité].</p>
       </div>
       <ul class="faits">
         <li><b>Ville</b><span>Montpellier</span></li>
@@ -221,18 +219,20 @@ footer{background:var(--mousse);color:var(--sauge);text-align:center;padding:1.5
 </section>
 
 <!-- ===== RÉALISATIONS =====
-     Pour ajouter un chantier : copiez un bloc <article class="chantier">
+     Pour ajouter un chantier : copiez un bloc "article" complet ci-dessous et changez l'image et le texte -->
+<section id="realisations">
+  <div class="wrap">
+    <h2>Chantiers et réalisations</h2>
+    <div class="chantiers">
+
+      <article class="chantier">
         <div class="photo">
           <img src="img/platelage.jpg" alt="Platelage bambou sur rails, jardin du magasin Peugeot" loading="lazy" onerror="this.parentNode.classList.add('vide');this.remove()">
           <span>Photo à ajouter : img/platelage.jpg</span>
         </div>
         <div>
           <h3>Platelage bois, magasin Peugeot (Besnard)</h3>
-          <dl>
-            <dt>Chantier</dt><dd>Jardin privé du magasin : platelage bambou sur rails.</dd>
-            <dt>Mon rôle</dt><dd>Pose du platelage dans une équipe de 4 (scie à onglet, scie sauteuse).</dd>
-            <dt>Résultat</dt><dd>Une terrasse en bois pour les 50 ans du magasin, conservée dans l'aménagement.</dd>
-          </dl>
+          <p class="synthese">Platelage en bambou sur rails dans le jardin privé du magasin Peugeot. J'ai posé le platelage au sein d'une équipe de 4, avec une scie à onglet et une scie sauteuse. Résultat : une terrasse en bois pour les 50 ans du magasin, conservée dans l'aménagement de l'espace.</p>
         </div>
       </article>
 
@@ -243,11 +243,7 @@ footer{background:var(--mousse);color:var(--sauge);text-align:center;padding:1.5
         </div>
         <div>
           <h3>Parc Elias Belassal, Mosson</h3>
-          <dl>
-            <dt>Chantier</dt><dd>Aire de jeux pour enfants : jeux, sol souple et mobilier urbain.</dd>
-            <dt>Mon rôle</dt><dd>Aide conducteur de travaux : réunions et suivi de chantier, rédaction du DOE.</dd>
-            <dt>Résultat</dt><dd>Une aire de jeux avec une tour de 9 m.</dd>
-          </dl>
+          <p class="synthese">Aménagement d'une aire de jeux pour enfants : jeux, sol souple et mobilier urbain. En tant qu'aide conducteur de travaux, j'ai participé aux réunions et au suivi de chantier, et rédigé le DOE. Résultat : une aire de jeux avec une tour de 9 m.</p>
         </div>
       </article>
 
